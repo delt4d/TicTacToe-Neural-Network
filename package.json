@@ -1,0 +1,19 @@
+{
+    "name": "brainjs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.mjs"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "brain.js": "^2.0.0-beta.23",
+        "prompt-sync": "^4.2.0"
+    },
+    "devDependencies": {
+        "@types/prompt-sync": "^4.2.0"
+    }
+}
