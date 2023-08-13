@@ -31,13 +31,13 @@ function showCurrentPlayer(currentPlayer) {
     let currentPlayer;
 
     const board = new Board();
-    const player1 = new BotPlayer('X');
+    const player1 = new HumanPlayer('X');
     const player2 = new BotPlayer('O');
 
     let oddTurn = false;
 
     while (!board.gameIsOver) {
-        currentPlayer = oddTurn ? player2 : player1;
+        currentPlayer = oddTurn ? player1 : player2;
         
         showCurrentPlayer(currentPlayer);
         displayBoard(board);
