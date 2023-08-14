@@ -2,7 +2,7 @@ import brain from "brain.js";
 import { Board } from '../board/board';
 import { Player } from './player';
 
-export class IaBot implements Player {
+export class AIBot implements Player {
     public readonly isBot = true;
 
     constructor(

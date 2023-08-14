@@ -1,5 +1,5 @@
 import { Board } from '../board/board';
-import { IaBot } from '../player/ia-player';
+import { AIBot } from '../player/ai-player';
 import { Player } from '../player/player';
 import { Game, GameResult } from './game';
 import brain from "brain.js"
@@ -14,8 +14,8 @@ export class NetGame implements Game {
         public board: Board,
         private net: brain.NeuralNetwork<InputType, OutputType>
     ) {
-        this.player1 = new IaBot('X', this.net);
-        this.player2 = new IaBot('Y', this.net);
+        this.player1 = new AIBot('X', this.net);
+        this.player2 = new AIBot('Y', this.net);
     }
 
     async run(): Promise<GameResult> {

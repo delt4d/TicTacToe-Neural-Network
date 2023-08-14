@@ -2,7 +2,7 @@ import { Board } from './board/board';
 import { ConsoleGame } from './game/console-game';
 import { Game } from './game/game';
 import { HumanPlayer } from './player/human-player';
-import { IaBot } from './player/ia-player';
+import { AIBot } from './player/ai-player';
 import { Player } from './player/player';
 import { RandomBot } from './player/random-bot';
 import { run } from './run';
@@ -35,19 +35,19 @@ Choose one of the following options:
 (1) - Human x Human
 (2) - Random Bot x Random Bot
 (3) - Human x Random Bot
-(4) - Human x IA Bot
-(5) - Random Bot x IA Bot
-(6) - IA Bot x IA Bot`);
+(4) - Human x AI Bot
+(5) - Random Bot x AI Bot
+(6) - AI Bot x AI Bot`);
 
 const playersChoice = chooseOption([1, 2, 3, 4, 5, 6]);
 
-const getIABot = (symbol: string) => {
+const getAIBot = (symbol: string) => {
     const net = new brain.NeuralNetwork<number[], number[]>();
     const json = JSON.parse(readFile(__dirname + "/data/trained.txt"));
 
     net.fromJSON(json);
 
-    return new IaBot(symbol, net);
+    return new AIBot(symbol, net);
 }
 
 let player1: Player;
@@ -68,15 +68,15 @@ switch (playersChoice) {
         break;
     case 4:
         player1 = new HumanPlayer('X');
-        player2 = getIABot('Y');
+        player2 = getAIBot('Y');
         break;
     case 5:
         player1 = new RandomBot('X');
-        player2 = getIABot('Y');
+        player2 = getAIBot('Y');
         break;
     case 6:
-        player1 = getIABot('X');
-        player2 = getIABot('Y');
+        player1 = getAIBot('X');
+        player2 = getAIBot('Y');
         break;
 }
 
