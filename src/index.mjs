@@ -27,19 +27,15 @@ function showCurrentPlayer(currentPlayer) {
 }
 
 (async () => {
-    /** @type { Player } */
-    let currentPlayer;
-
     const board = new Board();
 
     const player1 = new HumanPlayer('X');
     const player2 = new RandomBotPlayer('O');
 
-    let oddTurn = false;
+    /** @type { Player } */
+    let currentPlayer = player1;
 
     while (!board.gameIsOver) {
-        currentPlayer = oddTurn ? player1 : player2;
-
         showCurrentPlayer(currentPlayer);
         displayBoard(board);
 
@@ -52,7 +48,8 @@ function showCurrentPlayer(currentPlayer) {
         }
 
         board.makeMove(currentPlayer, move);
-        oddTurn = !oddTurn;
+
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
     }
 
     displayBoard(board);
