@@ -12,28 +12,57 @@ export class Board {
         return this.isBoardFull() || this.isGameWon();
     }
 
-    /** 
-     * 
-     * @returns {Array<string>} 
-     */
-    getPlaces() {
-        return [...this.#places.map((cell, index) => cell !== null ? cell : `${index}`)];
-    }
-
-    /** 
-     * 
-     * @returns {Array<number>} 
-     */
-    getEmptyCells() {
-        return this.#places
-            .map((cell, index) => !cell ? index : null)
-            .filter(c => c !== null);
+    static get winningCombinations() {
+        return [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
     }
 
     /**
-     * 
-     * @param {Player} player 
-     * @param {number} position 
+     *
+     * @returns {Array<string>}
+     */
+    getPlaces() {
+        return [
+            ...this.#places.map((cell, index) =>
+                cell !== null ? cell : `${index}`
+            ),
+        ];
+    }
+
+    /**
+     *
+     * @returns {Array<number>}
+     */
+    getPlacesNet() {
+        return [
+            ...this.#places.map((cell, index) =>
+                cell !== null ? (this.symbol === cell ? 1 : -1) : 0
+            ),
+        ];
+    }
+
+    /**
+     *
+     * @returns {Array<number>}
+     */
+    getEmptyCells() {
+        return this.#places
+            .map((cell, index) => (!cell ? index : null))
+            .filter((c) => c !== null);
+    }
+
+    /**
+     *
+     * @param {Player} player
+     * @param {number} position
      * @returns {boolean}
      */
     makeMove(player, position) {
@@ -45,28 +74,23 @@ export class Board {
     }
 
     /**
-     * 
+     *
      * @returns {boolean}
      */
     isGameWon() {
-        const winningCombinations = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8],
-            [0, 3, 6], [1, 4, 7], [2, 5, 8],
-            [0, 4, 8], [2, 4, 6]           
-        ];
-
-        return winningCombinations
-            .some(combination => {
-                const values = combination.map(pos => this.#places[pos]);
-                return values[0] !== null && values.every(value => value === values[0]);
-            });
+        return Board.winningCombinations.some((combination) => {
+            const values = combination.map((pos) => this.#places[pos]);
+            return (
+                values[0] !== null && values.every((value) => value === values[0])
+            );
+        });
     }
-    
+
     /**
-     * 
+     *
      * @returns {boolean}
      */
     isBoardFull() {
-        return this.#places.every(cell => cell !== null);
+        return this.#places.every((cell) => cell !== null);
     }
 }
