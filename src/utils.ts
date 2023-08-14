@@ -1,4 +1,4 @@
-import fs from 'fs';
+import * as fs from 'fs';
 
 export const sleep = (time: number) => {
     return new Promise((resolve) => {
@@ -15,7 +15,10 @@ export const saveFile = (path: string, content: string) => {
     });
 };
 
+export const readFile = (path: string): string => {
+    return fs.readFileSync(path, 'utf-8');
+}
+
 export const randomBetween = (min: number, max: number) => {
     return Math.random() * (max - min) + min;
 }
-
