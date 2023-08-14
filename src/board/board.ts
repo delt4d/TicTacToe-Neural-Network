@@ -17,7 +17,7 @@ export class Board {
 
     constructor() {
         for (let i = 0; i < 9; i++) {
-            this._squares.push(new Square(i));
+            this._squares.push(new Square(i, null));
         }
     }
 
