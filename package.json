@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node src/index.mjs"
+        "start": "node src/index.mjs",
+        "train": "node src/net.mjs"
     },
     "keywords": [],
     "author": "",
