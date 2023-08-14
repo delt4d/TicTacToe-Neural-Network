@@ -34,7 +34,7 @@ export class ConsoleGame implements Game {
                 this.player1;
     }
 
-    async start() {
+    async run() {
         while (!this.board.isGameOver()) {
             console.log('\n-------------------');
             this.changePlayer();

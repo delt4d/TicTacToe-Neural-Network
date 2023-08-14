@@ -7,7 +7,7 @@ export interface GameResult {
 }
 
 export interface Game {
-    start(): Promise<GameResult>;
+    run(): Promise<GameResult>;
     board: Board;
     player1: Player;
     player2: Player;
