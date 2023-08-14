@@ -1,10 +1,12 @@
 import { Board } from './board/board';
 import { ConsoleGame } from './game/console-game';
 import { Game } from './game/game';
+import { NetGame } from './game/net-game';
 import { HumanPlayer } from './player/human-player';
 import { Player } from './player/player';
 import { RandomBot } from './player/random-bot';
 import { run } from './run';
+import brain = require("brain.js");
 import promptSync from 'prompt-sync';
 
 const prompt = promptSync({ sigint: true });
@@ -31,9 +33,10 @@ console.log(`
 Choose one of the following options:
 (1) - Human x Human
 (2) - Random Bot x Random Bot
-(3) - Human x Random Bot`);
+(3) - Human x Random Bot
+(4) - Train Net`);
 
-const playersChoice = chooseOption([1, 2, 3]);
+const playersChoice = chooseOption([1, 2, 3, 4]);
 
 let player1: Player;
 let player2: Player;
@@ -54,6 +57,11 @@ switch (playersChoice) {
 }
 
 const board = new Board();
-const game: Game = new ConsoleGame(board, player1!, player2!);
+let game: Game = new ConsoleGame(board, player1!, player2!);
+
+if (playersChoice === 4) {
+    const net = new brain.NeuralNetwork<number[], number[]>();
+    game = new NetGame(board, net);
+}
 
 run(game);

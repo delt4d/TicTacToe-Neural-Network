@@ -7,5 +7,6 @@ export interface RunResult {
 
 export async function run(game: Game) {
     const result = await game.run();
+    console.log({ result });
     return { game, result }
 }
