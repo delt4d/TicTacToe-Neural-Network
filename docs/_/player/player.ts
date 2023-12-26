@@ -1,5 +1,4 @@
-import { Board } from '../board/board';
-import { Square } from '../board/square';
+import { Board } from "../board/board";
 
 export interface Player {
     symbol: string;

@@ -1,5 +1,5 @@
-import { Player } from '../player/player';
-import { Square } from './square';
+import { Player } from "../player/player";
+import { Square } from "./square";
 
 export class Board {
     private _squares: Array<Square> = [];
@@ -12,8 +12,8 @@ export class Board {
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8],
-        [2, 4, 6]
-    ]
+        [2, 4, 6],
+    ];
 
     constructor() {
         for (let i = 0; i < 9; i++) {
@@ -42,7 +42,7 @@ export class Board {
      * @return {Array<Square>} An array of empty squares.
      */
     get emptySquares(): Array<Square> {
-        return [...this._squares.filter(square => square.isNull())];
+        return [...this._squares.filter((square) => square.isNull())];
     }
 
     /**
@@ -72,7 +72,9 @@ export class Board {
      * @return {Array<0 | 1 | -1>} - An array of numbers representing the relationship of each square to the player. A value of 0 indicates that the square is null, 1 indicates that the square belongs to the player, and -1 indicates that the square belongs to the opponent.
      */
     getSquaresToNetwork(player: Player): Array<0 | 1 | -1> {
-        return this._squares.map(square => square.isNull() ? 0 : (square.value === player ? 1 : -1))
+        return this._squares.map((square) =>
+            square.isNull() ? 0 : square.value === player ? 1 : -1
+        );
     }
 
     /**
@@ -90,9 +92,12 @@ export class Board {
      * @return {boolean} Returns true if the game has been won, otherwise false.
      */
     isGameWon(): boolean {
-        return Board.winningCombinations.some(combination => {
-            const squares = combination.map(pos => this._squares[pos]);
-            return !squares[0].isNull() && squares.every(square => square.value === squares[0].value);
+        return Board.winningCombinations.some((combination) => {
+            const squares = combination.map((pos) => this._squares[pos]);
+            return (
+                !squares[0].isNull() &&
+                squares.every((square) => square.value === squares[0].value)
+            );
         });
     }
 
@@ -102,6 +107,12 @@ export class Board {
      * @return {boolean} Returns true if every square is not null, false otherwise.
      */
     isBoardFull(): boolean {
-        return this._squares.every(square => !square.isNull());
+        return this._squares.every((square) => !square.isNull());
+    }
+
+    clone(): Board {
+        const clonedBoard = new Board();
+        clonedBoard._squares = [...this._squares];
+        return clonedBoard;
     }
 }
