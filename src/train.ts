@@ -2,14 +2,15 @@ import net from "./net";
 import { Board, RandomBotPlayer } from "./tic-tac-toe";
 import { loop, saveFile } from "./utils";
 
-const numIterations = 520;
+const numIterations = 100;
 const inputs: number[][] = [];
 const outputs: number[][] = [];
 
-console.log("Training...");
-start().finally(() => console.log("Done training."));
+start();
 
 async function start() {
+    console.log("Training...");
+
     for (let i of loop(numIterations)) {
         const board = new Board(new RandomBotPlayer(), new RandomBotPlayer());
 
@@ -22,8 +23,6 @@ async function start() {
 
             inputs.push(board.getBoardAsDouble(!board.currentIsPlayerOne()));
         }
-
-        process.stdout.write(".");
 
         const output = board.isFull ? 0 : board.winnerIsPlayerOne() ? 1 : -1;
 
@@ -39,12 +38,11 @@ async function start() {
             }))
         );
 
+        process.stdout.write(".");
+
         const json = net.toJSON();
         await saveFile("net.json", JSON.stringify(json));
     }
 
-    console.log("Saving training data...");
-    const json = net.toJSON();
-    await saveFile("net.json", JSON.stringify(json));
-    console.log("Training data saved successfully");
+    console.log("Done training.");
 }

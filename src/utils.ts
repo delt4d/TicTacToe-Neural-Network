@@ -1,3 +1,5 @@
+import { FSWatcher, WatchListener } from "fs";
+
 export function loop(count: number): number[] {
     const arr: number[] = [];
 
@@ -57,4 +59,18 @@ export async function readFile(filename: string): Promise<string> {
     const readFile = util.promisify(fs.readFile);
 
     return await readFile(filename, "utf8");
+}
+
+export async function watchFile(
+    filename: string,
+    listener?: WatchListener<string> | undefined
+) {
+    const fs = await import("fs");
+    fs.watch(filename, { encoding: "utf-8" }, listener);
+}
+
+export async function sleep(time: number) {
+    return await new Promise((resolve) => {
+        setTimeout(resolve, time);
+    });
 }

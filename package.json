@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "start": "ts-node-dev src/app.ts",
-        "train": "ts-node src/train.ts"
+        "train": "ts-node src/train.ts",
+        "live": "ts-node src/net/test.ts"
     },
     "keywords": [],
     "author": "",
