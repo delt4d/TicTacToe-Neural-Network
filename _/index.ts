@@ -7,7 +7,7 @@ import { Player } from './player/player';
 import { RandomBot } from './player/random-bot';
 import { run } from './run';
 import { readFile } from './utils';
-import brain = require("brain.js");
+import * as brain from "brain.js";
 import promptSync from 'prompt-sync';
 
 const prompt = promptSync({ sigint: true });

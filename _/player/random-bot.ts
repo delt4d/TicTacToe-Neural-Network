@@ -1,11 +1,11 @@
-import { Board } from '../board/board';
-import { randomBetween } from '../utils';
-import { Player } from './player';
+import { Board } from "../board/board";
+import { randomBetween } from "../utils";
+import { Player } from "./player";
 
 export class RandomBot implements Player {
     public readonly isBot = true;
 
-    constructor(public readonly symbol: string) { }
+    constructor(public readonly symbol: string) {}
 
     /**
      * Retrieves a random choice from the given board.
