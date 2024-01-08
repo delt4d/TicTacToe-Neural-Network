@@ -2,7 +2,7 @@ import net from "./net";
 import { Board, RandomBotPlayer } from "./tic-tac-toe";
 import { loop, saveFile } from "./utils";
 
-const numIterations = 100;
+const numIterations = 250;
 const inputs: number[][] = [];
 const outputs: number[][] = [];
 
@@ -21,7 +21,7 @@ async function start() {
                 throw new Error("Bad choice");
             }
 
-            inputs.push(board.getBoardAsDouble(!board.currentIsPlayerOne()));
+            inputs.push(board.getBoardAsDouble(!board.isPlayerOneTurn()));
         }
 
         const output = board.isFull ? 0 : board.winnerIsPlayerOne() ? 1 : -1;

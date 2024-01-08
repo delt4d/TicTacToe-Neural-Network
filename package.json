@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node-dev src/app.ts",
+        "start": "ts-node src/app.ts",
         "train": "ts-node src/train.ts",
         "live": "ts-node src/net/test.ts"
     },

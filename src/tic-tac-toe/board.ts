@@ -61,7 +61,7 @@ export class Board {
         return result;
     }
 
-    currentIsPlayerOne() {
+    isPlayerOneTurn() {
         return this._currentPlayer === this._player1;
     }
 
@@ -71,7 +71,7 @@ export class Board {
 
     niceSquares() {
         return this.squares.map((square) =>
-            square.isNull ? "." : square.value === this.playerOne ? "X" : "O"
+            square.isNull ? "." : square.value === this.playerOne ? "✖" : "●"
         );
     }
 
@@ -134,7 +134,7 @@ export class Board {
 
     get winner() {
         if (!this.hasWinner) return null;
-        return this.currentIsPlayerOne() ? this.playerTwo : this.playerOne;
+        return this.isPlayerOneTurn() ? this.playerTwo : this.playerOne;
     }
 
     winnerIsPlayerOne() {
