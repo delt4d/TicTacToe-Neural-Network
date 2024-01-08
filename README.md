@@ -25,6 +25,12 @@ npm start
 
 You need to have python installed.
 
+To check the AI Bot result, execute:
+
+```
+npm run live
+```
+
 ## Screenshots
 
 <img src=docs/img1.png width=100vw>
