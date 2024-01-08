@@ -22,7 +22,14 @@ Before running `npm start` to start the game, you will need to train the AI. Exe
 npm run train
 npm start
 ```
+
 You need to have python installed.
+
+To check the AI Bot result, execute:
+
+```
+npm run live
+```
 
 ## Screenshots
 
